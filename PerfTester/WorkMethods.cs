@@ -169,7 +169,7 @@ namespace PerfTester
             }
         }
 
-        public int GetValueFromDictionary(string key, int value)
+        public int GetValueFromDictionary(string key)
         {
             if (DictionaryOfInts.ContainsKey(key))
             {

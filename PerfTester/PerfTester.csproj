@@ -6,10 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KeraLua" Version="1.2.15" />
     <PackageReference Include="MoonSharp" Version="2.0.0" />
     <PackageReference Include="NeoLua" Version="1.3.13" />
     <PackageReference Include="NLua" Version="1.5.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="WorkMethods.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

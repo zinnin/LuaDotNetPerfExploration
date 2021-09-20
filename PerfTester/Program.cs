@@ -12,7 +12,7 @@ namespace PerfTester
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            int testCount = 1000000;
+            int testCount = 500000;
             new NeoLuaTests(testCount);
             new DotNetTests(testCount);
             new MoonSharpTests(testCount);

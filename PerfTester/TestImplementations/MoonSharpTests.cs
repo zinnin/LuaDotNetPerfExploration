@@ -17,10 +17,19 @@ namespace PerfTester
             RunLuaCalledFromDotNetTests(testItteration);
         }
 
+        private void RunTestCaseScript(Script script, TestCaseType caseType, TestCaseGroup group, string runScript)
+        {
+            TestCase testCase = GetTestCase(caseType);
+            testCase.StartTimer(group);
+            script.DoString(runScript);
+            testCase.EndTimer(group);
+        }
+
         public void RunDotNetCallTest(int testItteration)
         {
             IntWorkMethods workMethods = new IntWorkMethods();            
             UserData.RegisterType<IntWorkMethods>();
+            UserData.RegisterType<FloatWorkMethods>();
             UserData.RegisterType<StringWorkMethods>();
 
             Script script = new Script();
@@ -28,22 +37,15 @@ namespace PerfTester
             script.Globals.Set("GlobalItterationCount", itterationCount);
 
             script.Globals.Set("DotNetIntWorkMethods", UserData.Create(new IntWorkMethods()));
+            script.Globals.Set("DotNetFloatWorkMethods", UserData.Create(new FloatWorkMethods()));
             script.Globals.Set("DotNetStringWorkMethods", UserData.Create(new StringWorkMethods()));
 
-            TestCase testCase = GetTestCase(TestCaseType.AddInts);
-            testCase.StartTimer(TestCaseGroup.MoonSharpCallingDotNet);
-            script.DoString("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Add(i, i+1) end");
-            testCase.EndTimer(TestCaseGroup.MoonSharpCallingDotNet);
-
-            testCase = GetTestCase(TestCaseType.SubtractInts);
-            testCase.StartTimer(TestCaseGroup.MoonSharpCallingDotNet);
-            script.DoString("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Subtract(i, i+1) end");
-            testCase.EndTimer(TestCaseGroup.MoonSharpCallingDotNet);
-
-            testCase = GetTestCase(TestCaseType.StringFlip);
-            testCase.StartTimer(TestCaseGroup.MoonSharpCallingDotNet);
-            script.DoString("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = DotNetStringWorkMethods.StringFlip(testString) end");
-            testCase.EndTimer(TestCaseGroup.MoonSharpCallingDotNet);
+            RunTestCaseScript(script, TestCaseType.AddInts, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Add(i, i+1) end");
+            RunTestCaseScript(script, TestCaseType.AddFloats, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetFloatWorkMethods.Add(i, i+1.5) end");
+            RunTestCaseScript(script, TestCaseType.SubtractInts, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Subtract(i, i+1) end");
+            RunTestCaseScript(script, TestCaseType.SubtractFloats, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetFloatWorkMethods.Subtract(i, i+1.5) end");
+            RunTestCaseScript(script, TestCaseType.MultiplyInts, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Multiply(i, i+1) end");
+            RunTestCaseScript(script, TestCaseType.MultiplyFloats, TestCaseGroup.MoonSharpCallingDotNet, "for i=1, GlobalItterationCount, 1 do local result = DotNetFloatWorkMethods.Multiply(i, i+1.5) end");
         }
 
         public void RunPureLuaTest(int testItteration)

@@ -175,7 +175,7 @@ namespace PerfTester.LibraryImplementations
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             for (int i = 1; i < itterationCount; i++)
             {
-                bool result = workMethods.LesserOrEqual(i, i + 1);
+                int result = workMethods.Remainder(i, i + 1);
             }
             testCase.EndTimer(TestCaseGroup.PureDotNet);
 
@@ -183,7 +183,7 @@ namespace PerfTester.LibraryImplementations
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             for (int i = 1; i < itterationCount; i++)
             {
-                bool result = workMethods.LesserOrEqual(i, i + 1);
+                int result = workMethods.Exponent(i, i + 1);
             }
             testCase.EndTimer(TestCaseGroup.PureDotNet);
             
@@ -272,7 +272,7 @@ namespace PerfTester.LibraryImplementations
 
             testCase = GetTestCase(TestCaseType.ItterateListAndGetCount);
             testCase.StartTimer(TestCaseGroup.PureDotNet);
-            for (int i = 1; i < itterationCount; i++)
+            for (int i = 1; i < itterationCount / 10000; i++)
             {
                 int count = collectionMethods.ItterateThroughListAndGetCount();
             }

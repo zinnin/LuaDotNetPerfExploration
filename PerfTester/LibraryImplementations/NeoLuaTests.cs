@@ -27,7 +27,7 @@ namespace PerfTester.LibraryImplementations
                 string workMethodsScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\WorkMethods.lua";
                 g.dochunk(File.ReadAllText(workMethodsScript), "WorkMethods.lua");
 
-                TestCase testCase = GetTestCase("AddInts");
+                TestCase testCase = GetTestCase(TestCaseType.AddInts);
                 testCase.StartTimer(TestCaseGroup.DotNetCallingNeoLua);
                 for (int i = 1; i < testItteration; i++)
                 {
@@ -35,7 +35,7 @@ namespace PerfTester.LibraryImplementations
                 }
                 testCase.EndTimer(TestCaseGroup.DotNetCallingNeoLua);
 
-                testCase = GetTestCase("SubtractInts");
+                testCase = GetTestCase(TestCaseType.SubtractInts);
                 testCase.StartTimer(TestCaseGroup.DotNetCallingNeoLua);
                 for (int i = 1; i < testItteration; i++)
                 {
@@ -43,7 +43,7 @@ namespace PerfTester.LibraryImplementations
                 }
                 testCase.EndTimer(TestCaseGroup.DotNetCallingNeoLua);
 
-                testCase = GetTestCase("StringFlip");
+                testCase = GetTestCase(TestCaseType.StringFlip);
                 testCase.StartTimer(TestCaseGroup.DotNetCallingNeoLua);
                 string testString = "testString";
                 for (int i = 1; i < testItteration; i++)
@@ -66,17 +66,17 @@ namespace PerfTester.LibraryImplementations
                 string workMethodsScript = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\WorkMethods.lua";
                 g.dochunk(File.ReadAllText(workMethodsScript), "WorkMethods.lua");
 
-                TestCase testCase = GetTestCase("AddInts");
+                TestCase testCase = GetTestCase(TestCaseType.AddInts);
                 testCase.StartTimer(TestCaseGroup.PureNeoLua);
                 g.dochunk("for i=1, GlobalItterationCount, 1 do local result = LuaIntWorkMethods.Add(i, i+1) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.PureNeoLua);
 
-                testCase = GetTestCase("SubtractInts");
+                testCase = GetTestCase(TestCaseType.SubtractInts);
                 testCase.StartTimer(TestCaseGroup.PureNeoLua);
                 g.dochunk("for i=1, GlobalItterationCount, 1 do local result = LuaIntWorkMethods.Subtract(i, i+1) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.PureNeoLua);
 
-                testCase = GetTestCase("StringFlip");
+                testCase = GetTestCase(TestCaseType.StringFlip);
                 testCase.StartTimer(TestCaseGroup.PureNeoLua);
                 g.dochunk("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = LuaStringWorkMethods.StringFlip(testString) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.PureNeoLua);
@@ -92,17 +92,17 @@ namespace PerfTester.LibraryImplementations
                 g.DotNetIntWorkMethods = new IntWorkMethods();
                 g.DotNetStringWorkMethods = new StringWorkMethods();
 
-                TestCase testCase = GetTestCase("AddInts");
+                TestCase testCase = GetTestCase(TestCaseType.AddInts);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNet);
                 g.dochunk("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Add(i, i+1) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.NeoLuaCallingDotNet);
 
-                testCase = GetTestCase("SubtractInts");
+                testCase = GetTestCase(TestCaseType.SubtractInts);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNet);
                 g.dochunk("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Subtract(i, i+1) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.NeoLuaCallingDotNet);
 
-                testCase = GetTestCase("StringFlip");
+                testCase = GetTestCase(TestCaseType.StringFlip);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNet);
                 g.dochunk("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = DotNetStringWorkMethods.StringFlip(testString) end", "test.lua");
                 testCase.EndTimer(TestCaseGroup.NeoLuaCallingDotNet);
@@ -118,7 +118,7 @@ namespace PerfTester.LibraryImplementations
                 g.DotNetIntWorkMethods = new IntWorkMethods();
                 g.DotNetStringWorkMethods = new StringWorkMethods();
 
-                TestCase testCase = GetTestCase("AddInts");
+                TestCase testCase = GetTestCase(TestCaseType.AddInts);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNetPreCompiled);
                 var chunk = l.CompileChunk("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Add(i, i+1) end", "test.lua", new LuaCompileOptions());
                 try
@@ -133,7 +133,7 @@ namespace PerfTester.LibraryImplementations
                 }
                 testCase.EndTimer(TestCaseGroup.NeoLuaCallingDotNetPreCompiled);
 
-                testCase = GetTestCase("SubtractInts");
+                testCase = GetTestCase(TestCaseType.SubtractInts);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNetPreCompiled);
                 chunk = l.CompileChunk("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods.Subtract(i, i+1) end", "test.lua", new LuaCompileOptions());
                 try
@@ -148,7 +148,7 @@ namespace PerfTester.LibraryImplementations
                 }
                 testCase.EndTimer(TestCaseGroup.NeoLuaCallingDotNetPreCompiled);
 
-                testCase = GetTestCase("StringFlip");
+                testCase = GetTestCase(TestCaseType.StringFlip);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCallingDotNetPreCompiled);
                 chunk = l.CompileChunk("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = DotNetStringWorkMethods.StringFlip(testString) end", "test.lua", new LuaCompileOptions());
                 try

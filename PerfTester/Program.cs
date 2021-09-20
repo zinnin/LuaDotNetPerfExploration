@@ -25,7 +25,7 @@ namespace PerfTester
                 csvData += $"{luaSolution}, ";
             }
 
-            foreach (KeyValuePair<string, TestCase> testCase in TestCases)
+            foreach (KeyValuePair<TestCaseType, TestCase> testCase in TestCases)
             {
                 csvData += $"\n{testCase.Key}, ";
 

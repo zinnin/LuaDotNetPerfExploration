@@ -8,7 +8,7 @@ namespace PerfTester.LibraryImplementations
         {
             IntWorkMethods workMethods = new IntWorkMethods();
 
-            TestCase testCase = GetTestCase("AddInts");
+            TestCase testCase = GetTestCase(TestCaseType.AddInts);
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -16,7 +16,7 @@ namespace PerfTester.LibraryImplementations
             }
             testCase.EndTimer(TestCaseGroup.PureDotNet);
 
-            testCase = GetTestCase("SubtractInts");
+            testCase = GetTestCase(TestCaseType.SubtractInts);
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -25,7 +25,7 @@ namespace PerfTester.LibraryImplementations
             testCase.EndTimer(TestCaseGroup.PureDotNet);
 
             StringWorkMethods stringWorkMethods = new StringWorkMethods();
-            testCase = GetTestCase("StringFlip");
+            testCase = GetTestCase(TestCaseType.StringFlip);
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             string testString = "testString";
             for (int i = 1; i < itterationCount; i++)

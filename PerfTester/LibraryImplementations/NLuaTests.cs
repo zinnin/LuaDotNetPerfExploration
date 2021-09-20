@@ -22,17 +22,17 @@ namespace PerfTester
             script["DotNetIntWorkMethods"] = new IntWorkMethods();
             script["DotNetStringWorkMethods"] = new StringWorkMethods();
 
-            TestCase testCase = GetTestCase("AddInts");
+            TestCase testCase = GetTestCase(TestCaseType.AddInts);
             testCase.StartTimer(TestCaseGroup.NLuacallingDotNet);
             script.DoString("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods:Add(i, i+1) end");
             testCase.EndTimer(TestCaseGroup.NLuacallingDotNet);
 
-            testCase = GetTestCase("SubtractInts");
+            testCase = GetTestCase(TestCaseType.SubtractInts);
             testCase.StartTimer(TestCaseGroup.NLuacallingDotNet);
             script.DoString("for i=1, GlobalItterationCount, 1 do local result = DotNetIntWorkMethods:Subtract(i, i+1) end");
             testCase.EndTimer(TestCaseGroup.NLuacallingDotNet);
 
-            testCase = GetTestCase("StringFlip");
+            testCase = GetTestCase(TestCaseType.StringFlip);
             testCase.StartTimer(TestCaseGroup.NLuacallingDotNet);
             script.DoString("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = DotNetStringWorkMethods:StringFlip(testString) end");
             testCase.EndTimer(TestCaseGroup.NLuacallingDotNet);
@@ -45,17 +45,17 @@ namespace PerfTester
             script["GlobalItterationCount"] = testItteration;
             script.DoString(File.ReadAllText(workMethodsScript));
 
-            TestCase testCase = GetTestCase("AddInts");
+            TestCase testCase = GetTestCase(TestCaseType.AddInts);
             testCase.StartTimer(TestCaseGroup.PureNLua);
             script.DoString("for i=1, GlobalItterationCount, 1 do local result = LuaIntWorkMethods.Add(i, i+1) end");
             testCase.EndTimer(TestCaseGroup.PureNLua);
 
-            testCase = GetTestCase("SubtractInts");
+            testCase = GetTestCase(TestCaseType.SubtractInts);
             testCase.StartTimer(TestCaseGroup.PureNLua);
             script.DoString("for i=1, GlobalItterationCount, 1 do local result = LuaIntWorkMethods.Subtract(i, i+1) end");
             testCase.EndTimer(TestCaseGroup.PureNLua);
 
-            testCase = GetTestCase("StringFlip");
+            testCase = GetTestCase(TestCaseType.StringFlip);
             testCase.StartTimer(TestCaseGroup.PureNLua);
             script.DoString("local testString = 'testString' for i=1, GlobalItterationCount, 1 do testString = LuaStringWorkMethods.StringFlip(testString) end");
             testCase.EndTimer(TestCaseGroup.PureNLua);
@@ -67,7 +67,7 @@ namespace PerfTester
             Lua script = new Lua();
             script.DoString(File.ReadAllText(workMethodsScript));
 
-            TestCase testCase = GetTestCase("AddInts");
+            TestCase testCase = GetTestCase(TestCaseType.AddInts);
             testCase.StartTimer(TestCaseGroup.DotNetCallingNLua);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -76,7 +76,7 @@ namespace PerfTester
             }
             testCase.EndTimer(TestCaseGroup.DotNetCallingNLua);
 
-            testCase = GetTestCase("SubtractInts");
+            testCase = GetTestCase(TestCaseType.SubtractInts);
             testCase.StartTimer(TestCaseGroup.DotNetCallingNLua);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -85,7 +85,7 @@ namespace PerfTester
             }
             testCase.EndTimer(TestCaseGroup.DotNetCallingNLua);
 
-            testCase = GetTestCase("StringFlip");
+            testCase = GetTestCase(TestCaseType.StringFlip);
             testCase.StartTimer(TestCaseGroup.DotNetCallingNLua);
             string testString = "testString";
             for (int i = 1; i < itterationCount; i++)

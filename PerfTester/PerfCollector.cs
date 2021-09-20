@@ -21,6 +21,13 @@ namespace PerfTester
             DotNetCallingNeoLua,
         }
 
+        public enum TestCaseType
+        {
+            AddInts,
+            SubtractInts,
+            StringFlip,
+        }
+
         public class TestCase
         {
             public Dictionary<TestCaseGroup, Stopwatch> PerfData { get; set; } = new Dictionary<TestCaseGroup, Stopwatch>();
@@ -44,9 +51,9 @@ namespace PerfTester
             }
         }
 
-        public static Dictionary<string, TestCase> TestCases { get; set; } = new Dictionary<string, TestCase>();
+        public static Dictionary<TestCaseType, TestCase> TestCases { get; set; } = new Dictionary<TestCaseType, TestCase>();
 
-        public static TestCase GetTestCase(string name)
+        public static TestCase GetTestCase(TestCaseType name)
         {
             if (!TestCases.ContainsKey(name))
             {

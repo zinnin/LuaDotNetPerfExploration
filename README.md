@@ -1,2 +1,2 @@
 # LuaDotNetPerfExploration
-A project developed to test different Lua libraries for C#
+A project developed to explore the performance and implementation differences of MoonSharp, NeoLua, and NLua

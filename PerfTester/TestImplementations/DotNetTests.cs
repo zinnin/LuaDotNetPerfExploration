@@ -147,7 +147,7 @@ namespace PerfTester.LibraryImplementations
             }
             testCase.EndTimer(TestCaseGroup.PureDotNet);
 
-            testCase = GetTestCase(TestCaseType.FloatsLesserThans);
+            testCase = GetTestCase(TestCaseType.FloatsLesserThan);
             testCase.StartTimer(TestCaseGroup.PureDotNet);
             for (int i = 1; i < itterationCount; i++)
             {

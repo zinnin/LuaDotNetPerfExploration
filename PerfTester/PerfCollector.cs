@@ -18,6 +18,7 @@ namespace PerfTester
             PureNeoLua,
             NeoLuaCallingDotNet,
             NeoLuaCallingDotNetPreCompiled,
+            NeoLuaCallingDotNetPreCompiledNoCompileTime,
             DotNetCallingNeoLua,
         }
 
@@ -40,7 +41,7 @@ namespace PerfTester
             IntsGreaterOrEqualTo,
             FloatsGreaterOrEqualTo,
             IntsLesserThan,
-            FloatsLesserThans,
+            FloatsLesserThan,
             IntsLesserOrEqualTo,
             FloatsLesserOrEqualTo,
             Remainder,

@@ -170,7 +170,7 @@ namespace PerfTester
             }
             testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
 
-            testCase = GetTestCase(TestCaseType.MultiplyInts);
+            testCase = GetTestCase(TestCaseType.MultiplyFloats);
             testCase.StartTimer(TestCaseGroup.MoonSharpCalled);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -371,7 +371,7 @@ namespace PerfTester
                     script.Call(collectionScripts.Table.Get("AddOrUpdateValueInDictionary"), collectionScripts, "Item" + i.ToString(), i);
                 }
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
 
             testCase = GetTestCase(TestCaseType.GetValueFromDictionary);
             testCase.StartTimer(TestCaseGroup.MoonSharpCalled);
@@ -380,15 +380,15 @@ namespace PerfTester
                 string item = script.Call(collectionScripts.Table.Get("GetValueFromDictionary"), collectionScripts, "BestItem").String;
 
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
 
             testCase = GetTestCase(TestCaseType.AddStringToList);
             testCase.StartTimer(TestCaseGroup.MoonSharpCalled);
             for (int i = 1; i < itterationCount; i++)
             {
-                script.Call(collectionScripts.Table.Get("AddStringToList"), collectionScripts, "Item" + i.ToString());
+                script.Call(collectionScripts.Table.Get("MoonSharpAddStringToList"), collectionScripts, "Item" + i.ToString());
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
 
             testCase = GetTestCase(TestCaseType.ItterateListAndGetCount);
             testCase.StartTimer(TestCaseGroup.MoonSharpCalled);
@@ -396,7 +396,7 @@ namespace PerfTester
             {
                 int result = (int)script.Call(collectionScripts.Table.Get("ItterateThroughListAndGetCount"), collectionScripts).Number;
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
         }
     }
 }

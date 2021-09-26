@@ -156,7 +156,7 @@ namespace PerfTester
             }
             testCase.EndTimer(TestCaseGroup.NLuaCalled);
 
-            testCase = GetTestCase(TestCaseType.MultiplyInts);
+            testCase = GetTestCase(TestCaseType.MultiplyFloats);
             testCase.StartTimer(TestCaseGroup.NLuaCalled);
             for (int i = 1; i < itterationCount; i++)
             {
@@ -357,7 +357,7 @@ namespace PerfTester
                     ((LuaFunction)script["LuaCollectionWorkMethods.AddOrUpdateValueInDictionary"]).Call(script["LuaCollectionWorkMethods"], "Item" + i.ToString(), i);
                 }
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.NLuaCalled);
 
             testCase = GetTestCase(TestCaseType.GetValueFromDictionary);
             testCase.StartTimer(TestCaseGroup.NLuaCalled);
@@ -366,7 +366,7 @@ namespace PerfTester
                 string item = ((LuaFunction)script["LuaCollectionWorkMethods.GetValueFromDictionary"]).Call(script["LuaCollectionWorkMethods"], "BestItem").First().ToString();
                 
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.NLuaCalled);
 
             testCase = GetTestCase(TestCaseType.AddStringToList);
             testCase.StartTimer(TestCaseGroup.NLuaCalled);
@@ -374,7 +374,7 @@ namespace PerfTester
             {
                 ((LuaFunction)script["LuaCollectionWorkMethods.AddStringToList"]).Call(script["LuaCollectionWorkMethods"], "Item" + i.ToString());
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.NLuaCalled);
 
             testCase = GetTestCase(TestCaseType.ItterateListAndGetCount);
             testCase.StartTimer(TestCaseGroup.NLuaCalled);
@@ -382,7 +382,7 @@ namespace PerfTester
             {
                 int.TryParse(((LuaFunction)script["LuaCollectionWorkMethods.ItterateThroughListAndGetCount"]).Call(script["LuaCollectionWorkMethods"]).First().ToString(), out int result);
             }
-            testCase.EndTimer(TestCaseGroup.DotNetPure);
+            testCase.EndTimer(TestCaseGroup.NLuaCalled);
         }
     }
 }

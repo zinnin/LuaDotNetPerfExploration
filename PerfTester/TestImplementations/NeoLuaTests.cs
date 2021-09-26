@@ -68,7 +68,7 @@ namespace PerfTester.LibraryImplementations
                 }
                 testCase.EndTimer(TestCaseGroup.NeoLuaCalled);
 
-                testCase = GetTestCase(TestCaseType.MultiplyInts);
+                testCase = GetTestCase(TestCaseType.MultiplyFloats);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCalled);
                 for (int i = 1; i < itterationCount; i++)
                 {
@@ -269,7 +269,7 @@ namespace PerfTester.LibraryImplementations
                         g.LuaCollectionWorkMethods.AddOrUpdateValueInDictionary(g.LuaCollectionWorkMethods, "Item" + i.ToString(), i);
                     }
                 }
-                testCase.EndTimer(TestCaseGroup.DotNetPure);
+                testCase.EndTimer(TestCaseGroup.NeoLuaCalled);
 
                 testCase = GetTestCase(TestCaseType.GetValueFromDictionary);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCalled);
@@ -277,7 +277,7 @@ namespace PerfTester.LibraryImplementations
                 {
                     int item = g.LuaCollectionWorkMethods.GetValueFromDictionary(g.LuaCollectionWorkMethods, "BestItem");
                 }
-                testCase.EndTimer(TestCaseGroup.DotNetPure);
+                testCase.EndTimer(TestCaseGroup.NeoLuaCalled);
 
                 testCase = GetTestCase(TestCaseType.AddStringToList);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCalled);
@@ -285,7 +285,7 @@ namespace PerfTester.LibraryImplementations
                 {
                     g.LuaCollectionWorkMethods.AddStringToList(g.LuaCollectionWorkMethods, "Item" + i.ToString());
                 }
-                testCase.EndTimer(TestCaseGroup.DotNetPure);
+                testCase.EndTimer(TestCaseGroup.NeoLuaCalled);
 
                 testCase = GetTestCase(TestCaseType.ItterateListAndGetCount);
                 testCase.StartTimer(TestCaseGroup.NeoLuaCalled);
@@ -293,7 +293,7 @@ namespace PerfTester.LibraryImplementations
                 {
                     int result = g.LuaCollectionWorkMethods.ItterateThroughListAndGetCount(g.LuaCollectionWorkMethods);
                 }
-                testCase.EndTimer(TestCaseGroup.DotNetPure);
+                testCase.EndTimer(TestCaseGroup.NeoLuaCalled);
             }
         }
 

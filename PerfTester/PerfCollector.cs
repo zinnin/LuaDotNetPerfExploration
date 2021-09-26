@@ -73,6 +73,7 @@ namespace PerfTester
 
             public void StartTimer(TestCaseGroup luaSolution)
             {
+                Console.WriteLine($"Starting Test Case For {luaSolution}");
                 PerfData[luaSolution].Start();
             }
 
@@ -91,6 +92,7 @@ namespace PerfTester
                 TestCases.Add(name, new TestCase());
             }
 
+            Console.WriteLine($"Getting Test Case For {name}");
             return TestCases[name];
         }
     }

@@ -117,7 +117,7 @@ namespace PerfTester
 
             RunTestCaseScript(script, TestCaseType.AddOrUpdateValueInDictionary, TestCaseGroup.MoonSharpPure, "for i=1, GlobalItterationCount, 1 do if (i % 5 == 0) then LuaCollectionWorkMethods:AddOrUpdateValueInDictionary('BestItem', i) else LuaCollectionWorkMethods:AddOrUpdateValueInDictionary('Item' .. i, i) end end");
             RunTestCaseScript(script, TestCaseType.GetValueFromDictionary, TestCaseGroup.MoonSharpPure, "for i=1, GlobalItterationCount, 1 do local result = LuaCollectionWorkMethods:GetValueFromDictionary('BestItem') end");
-            RunTestCaseScript(script, TestCaseType.AddStringToList, TestCaseGroup.MoonSharpPure, "for i=1, GlobalItterationCount, 1 do local result = LuaCollectionWorkMethods:MoonSharpAddStringToList('Item' .. i) end");
+            RunTestCaseScript(script, TestCaseType.AddStringToList, TestCaseGroup.MoonSharpPure, "for i=1, GlobalItterationCount, 1 do local result = LuaCollectionWorkMethods:AddStringToList('Item' .. i) end");
             RunTestCaseScript(script, TestCaseType.ItterateListAndGetCount, TestCaseGroup.MoonSharpPure, "for i=1, GlobalItterationCount / 10000, 1 do local result = LuaCollectionWorkMethods:ItterateThroughListAndGetCount() end");
         }
 
@@ -386,7 +386,7 @@ namespace PerfTester
             testCase.StartTimer(TestCaseGroup.MoonSharpCalled);
             for (int i = 1; i < itterationCount; i++)
             {
-                script.Call(collectionScripts.Table.Get("MoonSharpAddStringToList"), collectionScripts, "Item" + i.ToString());
+                script.Call(collectionScripts.Table.Get("AddStringToList"), collectionScripts, "Item" + i.ToString());
             }
             testCase.EndTimer(TestCaseGroup.MoonSharpCalled);
 

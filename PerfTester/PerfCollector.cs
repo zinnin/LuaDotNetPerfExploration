@@ -8,18 +8,20 @@ namespace PerfTester
     {
         public enum TestCaseGroup
         {
-            PureDotNet,
-            PureMoonSharp,
-            MoonSharpCallingDotNet,
-            DotNetCallingMoonSharp,
-            PureNLua,
-            NLuacallingDotNet,
-            DotNetCallingNLua,
-            PureNeoLua,
-            NeoLuaCallingDotNet,
-            NeoLuaCallingDotNetPreCompiled,
-            NeoLuaCallingDotNetPreCompiledNoCompileTime,
-            DotNetCallingNeoLua,
+            DotNetPure,
+            MoonSharpPure,
+            NLuaPure,
+            NeoLuaPure,
+
+            MoonSharpCalled,
+            NLuaCalled,
+            NeoLuaCalled,
+
+            MoonSharpCalling,
+            NLuaCalling,
+            NeoLuaCalling,
+            NeoLuaCallingPreCompiled,
+            NeoLuaCallingPreCompiledNoCompileTime,
         }
 
         public enum TestCaseType
